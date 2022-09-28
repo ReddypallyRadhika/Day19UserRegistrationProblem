@@ -52,10 +52,10 @@ public class UserRegistration {
 		String firstName = input.nextLine();
 		boolean isFirstName = isValidUsername(firstName);
 
-		if (isFirstName)
+		if (isFirstName) {
 			System.out.println(firstName + " is an Valid firstName");
-		else
+		} else {
 			System.out.println(firstName + " is an Invalid firstName");
-
+		}
 	}
 }
