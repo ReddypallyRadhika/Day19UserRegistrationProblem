@@ -11,9 +11,9 @@ import java.util.regex.Pattern;
  * @author hp
  *
  */
-/*
- * As a User need to enter a valid First Name - First name starts with Cap and
- * has minimum 3 characters
+/*UC2
+ *As a User need to enter a valid Last Name
+ * - Last name starts with Cap and has minimum 3 characters
  */
 public class UserRegistration {
 
@@ -46,9 +46,22 @@ public class UserRegistration {
 		return matcherObject.matches();
 	}
 
+	public static boolean isValidUsername2(String lastName) {
+
+		String nameRegex = "[A-Z]+([ '-][a-zA-Z]+)*";
+		Pattern patternObject = Pattern.compile(nameRegex);
+		if (lastName == null) {
+			return false;
+		}
+		Matcher matcherObject = patternObject.matcher(lastName);
+		return matcherObject.matches();
+	}
+	
+
 	public static void main(String[] args) {
-		System.out.println("----- Welcome To First Name Validatior -----");
+		System.out.println("----- Welcome To User Name Validatior -----");
 		Scanner input = new Scanner(System.in);
+		System.out.println("Enter Firstname:");
 		String firstName = input.nextLine();
 		boolean isFirstName = isValidUsername(firstName);
 
@@ -56,6 +69,15 @@ public class UserRegistration {
 			System.out.println(firstName + " is an Valid firstName");
 		} else {
 			System.out.println(firstName + " is an Invalid firstName");
+		}
+		System.out.println("Enter Lastname:");
+		String lastName = input.nextLine();
+		boolean isLastName = isValidUsername(lastName);
+
+		if (isLastName) {
+			System.out.println(lastName + " is an Valid lastName");
+		} else {
+			System.out.println(lastName + " is an Invalid lastName");
 		}
 	}
 }
