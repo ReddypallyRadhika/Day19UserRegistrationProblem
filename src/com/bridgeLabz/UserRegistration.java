@@ -12,9 +12,9 @@ import java.util.regex.Pattern;
  *
  */
 /*
- * UC3 As a User need to enter a valid email - E.g. abc.xyz@bl.co.in - Email has
- * 3 mandatory parts (abc, bl & co) and 2 optional (xyz & in) with precise @ and
- * . positions
+ * UC4 
+ * As a User need to follow pre-defined Mobile Format - E.g. 91 9919819801 -
+ * Country code follow by space and 10 digit number
  */
 public class UserRegistration {
 
@@ -58,7 +58,7 @@ public class UserRegistration {
 		return matcherObject.matches();
 	}
 
-	public static boolean isValidEmail(String Email) {
+	public static boolean isValidEmail(String email) {
 
 		// String emailRegex = "^[A-Z0-9+_.-]+@[A-Z0-9.-]+$";
 		/*
@@ -70,10 +70,22 @@ public class UserRegistration {
 		String emailRegex = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
 
 		Pattern patternObject = Pattern.compile(emailRegex);
-		if (Email == null) {
+		if (email == null) {
 			return false;
 		}
-		Matcher matcherObject = patternObject.matcher(Email);
+		Matcher matcherObject = patternObject.matcher(email);
+		return matcherObject.matches();
+	}
+
+	public static boolean isValidMobileNo(String mobileNo) {
+
+		// String nameRegex = "([0-9]{2})[-.●\s]?([0-9]{10})$";
+		String nameRegex = "([0-9]{2})[\s]?([0-9]{10})$";
+		Pattern patternObject = Pattern.compile(nameRegex);
+		if (mobileNo == null) {
+			return false;
+		}
+		Matcher matcherObject = patternObject.matcher(mobileNo);
 		return matcherObject.matches();
 	}
 
@@ -106,6 +118,15 @@ public class UserRegistration {
 			System.out.println(Email + " is an Valid Email");
 		} else {
 			System.out.println(Email + " is an Invalid Email");
+		}
+		System.out.println("Enter Mobile No:");
+		String MobileNo = input.nextLine();
+		boolean isMobileNo = isValidMobileNo(MobileNo);
+
+		if (isMobileNo) {
+			System.out.println(MobileNo + " is an Valid Mobile No");
+		} else {
+			System.out.println(MobileNo + " is an Invalid Mobile No");
 		}
 	}
 }
