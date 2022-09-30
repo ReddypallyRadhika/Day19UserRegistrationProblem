@@ -12,9 +12,10 @@ import java.util.regex.Pattern;
  *
  */
 /*
- * UC4 
- * As a User need to follow pre-defined Mobile Format - E.g. 91 9919819801 -
- * Country code follow by space and 10 digit number
+ * UC5 
+ * As a User need to follow pre-defined Password rules.
+ * Rule1– minimum 8 Characters 
+ * - NOTE – All rules must be passed
  */
 public class UserRegistration {
 
@@ -80,17 +81,27 @@ public class UserRegistration {
 	public static boolean isValidMobileNo(String mobileNo) {
 
 		// String nameRegex = "([0-9]{2})[-.●\s]?([0-9]{10})$";
-		String nameRegex = "([0-9]{2})[\s]?([0-9]{10})$";
-		Pattern patternObject = Pattern.compile(nameRegex);
+		String mobileRegex = "([0-9]{2})[\s]?([0-9]{10})$";
+		Pattern patternObject = Pattern.compile(mobileRegex);
 		if (mobileNo == null) {
 			return false;
 		}
 		Matcher matcherObject = patternObject.matcher(mobileNo);
 		return matcherObject.matches();
 	}
+	public static boolean isValidPassWord(String password) {
+
+		 String passwordRegex = "([a-zA-z]{8,20})$";
+		Pattern patternObject = Pattern.compile(passwordRegex);
+		if (password == null) {
+			return false;
+		}
+		Matcher matcherObject = patternObject.matcher(password);
+		return matcherObject.matches();
+	}
 
 	public static void main(String[] args) {
-		System.out.println("----- Welcome To User Name Validatior -----");
+		System.out.println("----- Welcome To User Details Validatior -----");
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter Firstname:");
 		String firstName = input.nextLine();
@@ -127,6 +138,15 @@ public class UserRegistration {
 			System.out.println(MobileNo + " is an Valid Mobile No");
 		} else {
 			System.out.println(MobileNo + " is an Invalid Mobile No");
+		}
+		System.out.println("Enter Password:");
+		String passWord = input.nextLine();
+		boolean isPassWord = isValidPassWord(passWord);
+
+		if (isPassWord) {
+			System.out.println(passWord + " is an Valid password");
+		} else {
+			System.out.println(passWord + " is an Invalid password");
 		}
 	}
 }
