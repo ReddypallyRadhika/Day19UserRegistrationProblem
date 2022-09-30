@@ -12,8 +12,8 @@ import java.util.regex.Pattern;
  *
  */
 /*
- * UC7 As a User need to follow pre-defined Password rules .Rule3– Should have
- * at least 1 numeric number in the password - NOTE – All rules must be passed
+ * UC8 As a User need to follow pre-defined Password rules .Rule3– Should have
+ * aRule4 – Has exactly 1 Special Character - NOTE – All rules must be passed
  */
 public class UserRegistration {
 
@@ -90,9 +90,11 @@ public class UserRegistration {
 
 	public static boolean isValidPassWord(String password) {
 		/*
-		 * (?=.*[A-Z]) atlest 1 upper case (?=.*[0-9]) atlest 1 numeric number
+		 * (?=.*[A-Z]) at lest 1 upper case (?=.*[0-9]) at lest 1 numeric number
+		 * (?=.*[@#$%^&-+=()]) represents a special character that must occur at least
+		 * once.
 		 */
-		String passwordRegex = "^(?=.*[0-9])(?=.*[A-Z])([a-zA-z0-9]{8,20})$";
+		String passwordRegex = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&-+=()])([a-zA-z0-9@#$%^&-+=()]{8,20})$";
 		// String passwordRegex ="^(?=.*[0-9])"+ "(?=.*[a-z])(?=.*[A-Z])".{8,20}$";
 		Pattern patternObject = Pattern.compile(passwordRegex);
 		if (password == null) {
