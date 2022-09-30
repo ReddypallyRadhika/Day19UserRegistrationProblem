@@ -12,8 +12,8 @@ import java.util.regex.Pattern;
  *
  */
 /*
- * UC8 As a User need to follow pre-defined Password rules .Rule3– Should have
- * aRule4 – Has exactly 1 Special Character - NOTE – All rules must be passed
+ * UC9
+ *Should clear all email samples provided separately
  */
 public class UserRegistration {
 
