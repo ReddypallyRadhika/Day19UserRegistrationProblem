@@ -11,9 +11,10 @@ import java.util.regex.Pattern;
  * @author hp
  *
  */
-/*UC2
- *As a User need to enter a valid Last Name
- * - Last name starts with Cap and has minimum 3 characters
+/*
+ * UC3 As a User need to enter a valid email - E.g. abc.xyz@bl.co.in - Email has
+ * 3 mandatory parts (abc, bl & co) and 2 optional (xyz & in) with precise @ and
+ * . positions
  */
 public class UserRegistration {
 
@@ -56,7 +57,25 @@ public class UserRegistration {
 		Matcher matcherObject = patternObject.matcher(lastName);
 		return matcherObject.matches();
 	}
-	
+
+	public static boolean isValidEmail(String Email) {
+
+		// String emailRegex = "^[A-Z0-9+_.-]+@[A-Z0-9.-]+$";
+		/*
+		 * It allows numeric values from 0 to 9. Both uppercase and lowercase letters
+		 * from a to z are allowed. Allowed are underscore “_”, hyphen “-“, and dot “.”
+		 * Dot isn't allowed at the start and end of the local part. Consecutive dots
+		 * aren't allowed. For the local part, a maximum of 64 characters are allowed.
+		 */
+		String emailRegex = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+
+		Pattern patternObject = Pattern.compile(emailRegex);
+		if (Email == null) {
+			return false;
+		}
+		Matcher matcherObject = patternObject.matcher(Email);
+		return matcherObject.matches();
+	}
 
 	public static void main(String[] args) {
 		System.out.println("----- Welcome To User Name Validatior -----");
@@ -78,6 +97,15 @@ public class UserRegistration {
 			System.out.println(lastName + " is an Valid lastName");
 		} else {
 			System.out.println(lastName + " is an Invalid lastName");
+		}
+		System.out.println("Enter Email:");
+		String Email = input.nextLine();
+		boolean isEmail = isValidEmail(Email);
+
+		if (isEmail) {
+			System.out.println(Email + " is an Valid Email");
+		} else {
+			System.out.println(Email + " is an Invalid Email");
 		}
 	}
 }
